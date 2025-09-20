@@ -1,0 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data =pd.read_csv('placement.csv')
+
+a = pd.DataFrame(data)
+
+final = a.head(10)
+
+color = ['red' if s == 'No' else 'green' for s in final['Placed']]
+explode = [0.3 if s == 'No' else 0 for s in final['Placed']]
+
+labels = final['CGPA'].astype(str) + " (CGPA: " + final['CGPA'].astype(str) + ")"
+
+plt.pie(
+    [1] * len(final),
+    labels=labels,
+    colors= color,
+    explode=explode
+    )
+plt.xlabel('Placed')
+plt.ylabel('CGPA')
+plt.title("Student Details")
+plt.legend()
+plt.show()
